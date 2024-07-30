@@ -1,0 +1,49 @@
+{% extends "vehicle/customerbase.html" %}
+{% comment %} {% extends "vehicle/base.html" %} {% endcomment %}
+
+
+{% block content %}
+<div class="container my-4">
+
+    <!-- ****** cards start ********** -->
+    <div class="row g-4 ">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-tasks fa-3x"></i>
+                    <h3 class="my-2">{{ new_request_made }}</h3>
+                    <p>New Request Made</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body text-center">
+                    <i class="fas fa-spinner fa-3x"></i>
+                    <h3 class="my-2">{{ work_in_progress }}</h3>
+                    <p>Vehicle Repair In Progress</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-white bg-success">
+                <div class="card-body text-center">
+                    <i class="fas fa-check-circle fa-3x"></i>
+                    <h3 class="my-2">{{ work_completed }}</h3>
+                    <p>Vehicle Repaired</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body text-center">
+                    <i class="fas fa-rupee-sign fa-3x"></i>
+                    <h3 class="my-2">{{ bill }}</h3>
+                    <p>Total Bill</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+ {% endblock content %}

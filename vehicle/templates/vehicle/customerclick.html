@@ -1,0 +1,15 @@
+{% extends "vehicle/base.html" %}
+
+{% block content %}
+<br><br>
+<div class="jumbotron" style="margin-bottom:0px;">
+    <h1 class="display-4">Hello</h1>
+    <p class="lead">Welcome to Vehicle Service Management</p>
+    <hr class="my-4">
+    <p>You can access various features after Login.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{% url 'customersignup' %}" role="button">Create Your Account</a>
+      <a class="btn btn-primary btn-lg" href="{% url 'customerlogin' %}" role="button">Login</a>
+    </p>
+  </div>
+ {% endblock content %}

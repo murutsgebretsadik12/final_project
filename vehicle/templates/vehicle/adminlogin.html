@@ -1,0 +1,28 @@
+{% extends "vehicle/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container flex-grow-1 d-flex align-items-center">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-6">
+        <div class="card">
+          <form method="post">
+            {% csrf_token %}
+            <h1 class="text-black text-center mb-4">Admin Login</h1>
+            <p class="text-muted text-center mb-4">Please enter your login and password!</p>
+            
+            {{ form|crispy }}
+            
+            <div class="text-center">
+              <button type="submit" class="btn btn-login mt-3">Login</button>
+            </div>
+          </form>
+         
+         
+
+        </div>
+      </div>
+    </div>
+  </div>
+ {% endblock content %}
+
+

@@ -1,0 +1,65 @@
+{% extends "vehicle/base.html" %}
+
+{% block content %}
+     <h1>Contact page</h1>
+      <!--Contact Section-->
+    <section class="contact-section">
+        <div class="auto-container">
+            <div class="contact-title">
+                <h2>Drop us message</h2>
+                <div class="text">Praising pain was born and I will give you a complete account of the system, and </div>
+            </div>
+            <div class="row clearfix">
+                
+                    <!--Form Column-->
+                <div class="form-column col-lg-7">
+                    <div class="inner-column">
+                        <!--Contact Form-->
+                        <div class="contact-form">
+                            <form method="post" action="{% url 'vehiclecontact' %}" id="contact-form">
+                                {% csrf_token %}
+                                <div class="row clearfix">
+                                    <div class="form-group col-md-12">
+                                        {{ form.name }}
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {{ form.email }}
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {{ form.subject }}
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {{ form.message }}
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <button class="theme-btn btn-style-one" type="submit"><span>Submit now</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--End Contact Form-->
+                    </div>
+                </div>
+
+                
+                <!--Info Column-->
+                <div class="info-column col-lg-5">
+                    <div class="inner-column">
+                        <h4>Our Address</h4>
+                        <div class="text">Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service.</div>
+                        <ul>
+                            <li><i class="flaticon-pin"></i><span>Address:</span> 10 new cabra rd, phisbsborough, Dublin  city, D07X6K7</li>
+                            <li><i class="flaticon-email"></i><span>email:</span> contact@murutsmenge21@gmail.com</li>
+                            <li><i class="flaticon-phone"></i><span>phone:</span> +353833018415</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+ {% endblock content %}
