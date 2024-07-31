@@ -2,8 +2,10 @@ from django import forms
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from .models import Mechanic, Customer
 from crispy_forms.layout import Layout, Field
+from .models import Mechanic, Customer, Request, Feedback
+
+
 
 
 class MechanicUserForm(forms.ModelForm):
@@ -75,3 +77,33 @@ class CustomerForm(forms.ModelForm):
         }
         
         
+
+
+class RequestForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields = [
+            'category',
+            'vehicle_no',
+            'vehicle_name',
+            'vehicle_model',
+            'vehicle_brand',
+            'problem_description'
+        ]
+        widgets = {
+            'problem_description': forms.Textarea(attrs={'rows': 3}),
+            'vehicle_no': forms.NumberInput(attrs={'min': 1}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].widget = forms.Select(choices=Request.CATEGORY_CHOICES)
+        # self.fields['status'].widget = forms.HiddenInput()  # Hide the status field if it's not editable
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ['submitted_by', 'message']
+        widgets = {
+            'message': forms.Textarea(attrs={'rows': 3}),
+        }

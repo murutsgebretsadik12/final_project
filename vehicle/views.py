@@ -1,16 +1,17 @@
 import logging
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import Group
 from .forms import MechanicUserForm, MechanicForm, CustomerUserForm, CustomerForm
+from .models import Customer, Mechanic
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required,user_passes_test
-from .models import Customer, Mechanic
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
-
+from django.db.models import Q, Sum
+from . import forms, models
 
 
 
@@ -293,7 +294,13 @@ def logout_view(request):
 
 
 
-#customer based view
+
+
+
+#============================================================================================
+#customer based view START
+#============================================================================================
+
 @login_required(login_url='customerlogin')
 @user_passes_test(is_customer)
 def customer_dashboard_view(request):
@@ -312,3 +319,139 @@ def customer_dashboard_view(request):
     }
     return render(request, 'vehicle/customer_dashboard.html', context=context)
 
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_profile_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    return render(request, 'vehicle/customer_profile.html', {'customer': customer})
+
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def edit_customer_profile_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    user = models.User.objects.get(id=customer.user_id)
+    userForm = forms.CustomerUserForm(instance=user)
+    customerForm = forms.CustomerForm(instance=customer)
+    
+    if request.method == 'POST':
+        userForm = forms.CustomerUserForm(request.POST, instance=user)
+        customerForm = forms.CustomerForm(request.POST, request.FILES, instance=customer)
+        
+        if userForm.is_valid() and customerForm.is_valid():
+            user = userForm.save(commit=False)
+            if user.password:
+                user.set_password(user.password)  # Ensure password is hashed
+            user.save()
+            customerForm.save()
+            return HttpResponseRedirect('customer-profile')
+    
+    context = {
+        'userForm': userForm,
+        'customerForm': customerForm,
+    }
+    
+    return render(request, 'vehicle/edit_customer_profile.html', context)
+
+
+
+
+
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_add_request_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    if request.method == 'POST':
+        form = forms.RequestForm(request.POST)
+        if form.is_valid():
+            enquiry = form.save(commit=False)
+            enquiry.customer = customer
+            enquiry.save()
+            return HttpResponseRedirect('customer-dashboard')
+    else:
+        form = forms.RequestForm()
+    return render(request, 'vehicle/customer_add_request.html', {'form': form, 'customer': customer})
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_request_view(request):
+    customer=models.Customer.objects.get(user_id=request.user.id)
+    return render(request,'vehicle/customer_request.html',{'customer':customer})
+
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_view_request_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    enquiries = models.Request.objects.filter(customer_id=customer.id, status="Pending")
+    return render(request, 'vehicle/customer_view_request.html', {'customer': customer, 'enquiries': enquiries})
+
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_delete_request_view(request, pk):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    enquiry = get_object_or_404(models.Request, id=pk, customer_id=customer.id, status='Pending')
+    enquiry.delete()
+    return redirect(reverse('customer-view-request'))
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_view_approved_request_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    enquiries = models.Request.objects.filter(customer_id=customer.id).exclude(status='Pending')
+    return render(request, 'vehicle/customer_view_approved_request.html', {'customer': customer, 'enquiries': enquiries})
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_view_approved_request_invoice_view(request):
+    customer=models.Customer.objects.get(user_id=request.user.id)
+    enquiries=models.Request.objects.all().filter(customer_id=customer.id).exclude(status='Pending')
+    return render(request,'vehicle/customer_view_approved_request_invoice.html',{'customer':customer,'enquiries':enquiries})
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_invoice_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    enquiries = models.Request.objects.filter(customer_id=customer.id).exclude(status='Pending')
+    return render(request, 'vehicle/customer_invoice.html', {'customer': customer, 'enquiries': enquiries})
+
+
+
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def customer_feedback_view(request):
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    if request.method == 'POST':
+        feedback_form = forms.FeedbackForm(request.POST)
+        if feedback_form.is_valid():
+            feedback = feedback_form.save(commit=False)
+            feedback.customer = customer  # Associate feedback with the current customer
+            feedback.save()
+            return redirect('feedback-sent')  # Redirect to feedback confirmation page
+    else:
+        feedback_form = forms.FeedbackForm()
+    
+    return render(request, 'vehicle/customer_feedback.html', {
+        'feedback_form': feedback_form,
+        'customer': customer
+    })
+    
+#============================================================================================
+#customer based view END
+#============================================================================================
+
+    
+
+ 
+ #============================================================================================
+ # mechanic based view   START
+#============================================================================================

@@ -1,0 +1,32 @@
+{% extends 'vehicle/customerbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles can go here if needed */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<div class="container mt-5">
+  <div class="form-container">
+    <h1 class="text-center mb-4">Make Request</h1>
+    <form method="post">
+      {% csrf_token %}
+      
+      <!-- Render the form with crispy-forms -->
+      {{ form|crispy }}
+
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'vehicle/customerbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<head>
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin: 3rem auto; /* Centered with auto margin */
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    .form-title {
+      text-align: center;
+      color: #0d6efd;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1 class="form-title">Edit Your Profile</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          {{ userForm.first_name|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+          {{ userForm.last_name|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+          {{ customerForm.mobile|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+          {{ customerForm.address|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+          {{ userForm.username|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+          {{ userForm.password|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+          {{ customerForm.profile_pic|as_crispy_field }}
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Edit Your Profile</button>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'vehicle/customerbase.html' %}
+
+{% block content %}
+
+<!-- Main Content -->
+<div class="container mt-5">
+
+    <!-- Table Start -->
+    <div class="card">
+        <div class="card-header bg-danger text-white text-center">
+            <h3>Pending Requests & Delete</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Vehicle Name</th>
+                        <th>Category</th>
+                        <th>Vehicle Number</th>
+                        <th>Problem Description</th>
+                        <th>Enquiry Date</th>
+                        <th>Status</th>
+                        <th>Delete Enquiry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enq in enquiries %}
+                    <tr>
+                        <td>{{ enq.vehicle_name }}</td>
+                        <td>{{ enq.category }}</td>
+                        <td>{{ enq.vehicle_no }}</td>
+                        <td>{{ enq.problem_description }}</td>
+                        <td>{{ enq.date }}</td>
+                        <td>{{ enq.status }}</td>
+                        <td>
+                            <a style="color:blue; text-decoration:none;font-size:25px;"href="{% url 'customer-delete-request' enq.id  %}">&#10008;</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Table End -->
+
+</div>
+<!-- End Main Content -->
+
+{% endblock content %}
+

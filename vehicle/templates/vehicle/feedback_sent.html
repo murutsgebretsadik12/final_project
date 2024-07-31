@@ -1,0 +1,12 @@
+{% extends 'vehicle/mechanicbase.html' %}
+
+{% block content %}
+<div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
+    <div class="text-center">
+        <img src="{% static 'images/success.png' %}" class="img-fluid mb-4" alt="Success Icon" style="max-width: 62px;">
+        <h2 class="text-primary mb-4">Feedback Sent Successfully!</h2>
+        <a href="/mechanic-feedback" class="btn btn-info mb-2">Send Another Feedback</a>
+        <a href="/mechanic-dashboard" class="btn btn-primary">Home</a>
+    </div>
+</div>
+{% endblock content %}

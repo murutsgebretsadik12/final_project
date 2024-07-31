@@ -141,8 +141,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'customerclick'# to redirect to home page while login
 
-# settings.py
+
 LOGIN_REDIRECT_URL = 'adminclick'  # Redirect to this URL after login
 LOGOUT_REDIRECT_URL = 'vehiclehome'  # Redirect to this URL after logout
-# settings.py
+
 LOGIN_URL = 'adminlogin'
+
+LOGIN_URL='customer-dashboard'
