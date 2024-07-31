@@ -251,21 +251,6 @@ def mechanic_dashboard_view(request):
 
 
 
-# Check if user is admin
-def is_admin(user):
-    return user.is_staff
-
-
-@login_required(login_url='login')
-@user_passes_test(is_admin)
-def admin_dashboard_view(request):
-    # Fetch relevant data for the admin dashboard
-    context = {
-        # Add context variables as needed
-    }
-    return render(request, 'vehicle/admin_dashboard.html', context)
-
-
 
     
     
@@ -286,6 +271,40 @@ def afterlogin_view(request):
 def logout_view(request):
     logout(request)
     return redirect('vehiclehome')
+
+
+
+
+
+#============================================================================================
+#Admin based view START
+#============================================================================================
+
+# Check if user is admin
+def is_admin(user):
+    return user.is_staff
+
+
+@login_required(login_url='login')
+@user_passes_test(is_admin)
+def admin_dashboard_view(request):
+    # Fetch relevant data for the admin dashboard
+    context = {
+        # Add context variables as needed
+    }
+    return render(request, 'vehicle/admin_dashboard.html', context)
+
+
+
+
+
+
+
+
+
+#============================================================================================
+#Admin based view END
+#============================================================================================
 
 
 
@@ -450,8 +469,27 @@ def customer_feedback_view(request):
 #============================================================================================
 
     
+    
+    
+    
+    
 
  
  #============================================================================================
  # mechanic based view   START
+#============================================================================================
+
+
+@login_required(login_url='mechaniclogin')
+@user_passes_test(is_mechanic)
+def mechanic_profile_view(request):
+    mechanic=models.Mechanic.objects.get(user_id=request.user.id)
+    return render(request,'vehicle/mechanic_profile.html',{'mechanic':mechanic})
+
+
+
+
+ 
+ #============================================================================================
+ # mechanic based view   END
 #============================================================================================

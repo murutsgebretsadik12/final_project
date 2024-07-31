@@ -33,13 +33,18 @@ urlpatterns = [
     # After login view
     path('afterlogin/', views.afterlogin_view, name='afterlogin'),
     
+    
+    path('admin-dashboard/', views.admin_dashboard_view, name='admin-dashboard'),
+      
+    
+    
+     
+    path('customer-dashboard', views.customer_dashboard_view, name='customer-dashboard'),
     path('customer-profile/', views.customer_profile_view,name='customer-profile'),
     path('edit-customer-profile', views.edit_customer_profile_view,name='edit-customer-profile'),
     path('customer-feedback', views.customer_feedback_view,name='customer-feedback'), 
     # path('feedback-sent', views.feedback_sent_view, name='feedback-sent'), 
-
     
-    path('customer-dashboard', views.customer_dashboard_view, name='customer-dashboard'),
     path('customer-request', views.customer_request_view,name='customer-request'),
     path('customer-add-request/',views.customer_add_request_view,name='customer-add-request'),
     path('customer-view-request',views.customer_view_request_view,name='customer-view-request'),
@@ -51,8 +56,14 @@ urlpatterns = [
     
     
     path('mechanic-dashboard/', views.mechanic_dashboard_view, name='mechanic-dashboard'),
-    path('admin-dashboard/', views.admin_dashboard_view, name='admin-dashboard'),
-      
+    # path('mechanic-profile', views.mechanic_profile_view,name='mechanic-profile'),
+    # path('edit-mechanic-profile', views.edit_mechanic_profile_view,name='edit-mechanic-profile'),
+
+    
+    
+    
+    
+  
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
