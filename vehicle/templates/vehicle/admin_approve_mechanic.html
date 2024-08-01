@@ -1,0 +1,67 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+{% load static %}
+
+<!-- main content -->
+<div class="container mt-5">
+
+  <!-- ****** table start ********** -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-danger text-white text-center">
+          <h3>Hire Mechanics Based On Skill</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Mechanic Name</th>
+                <th scope="col">Profile Picture</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Skills</th>
+                <th scope="col">Approve</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for mechanic in mechanics %}
+              <tr>
+                <td>{{ mechanic.user.first_name }} {{ mechanic.user.last_name }}</td>
+                <td>
+                    {% if mechanic.profile_pic %}
+                        <img src="{{ mechanic.profile_pic.url }}" alt="Profile Pic" class="img-thumbnail" height="40" width="40">
+                    {% else %}
+                        <img src="{% static 'default_profile_pic.png' %}" alt="Default Profile Pic" class="img-thumbnail" height="40" width="40">
+                    {% endif %}
+                </td>
+                <td>{{ mechanic.mobile }}</td>
+                <td>{{ mechanic.address }}</td>
+                <td>{{ mechanic.skill }}</td>
+                <td>
+                  <a href="{% url 'approve-mechanic' mechanic.id %}" class="text-success" style="font-size: 1.5rem;">
+                    <i class="fas fa-check"></i>
+                  </a>  
+
+                </td>
+                <td>
+                 <a href="{% url 'delete-mechanic' mechanic.id %}" class="text-danger" style="font-size: 1.5rem;">
+                    <i class="fas fa-times"></i>
+                  </a> 
+              
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ****** table end ********** -->
+
+</div>
+<!-- end main content -->
+
+{% endblock content %}

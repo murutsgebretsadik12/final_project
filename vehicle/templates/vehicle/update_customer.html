@@ -1,0 +1,42 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+<div class="container my-5">
+    <h3 class="text-center mb-4">Update Customer</h3>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" name="first_name" id="first_name" class="form-control" value="{{ userForm.first_name.value }}">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" name="last_name" id="last_name" class="form-control" value="{{ userForm.last_name.value }}">
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" value="{{ userForm.username.value }}">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" value="{{ userForm.password.value }}">
+                </div>
+                <div class="mb-3">
+                    <label for="mobile" class="form-label">Mobile</label>
+                    <input type="text" name="mobile" id="mobile" class="form-control" value="{{ customerForm.mobile.value }}">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" name="address" id="address" class="form-control" value="{{ customerForm.address.value }}">
+                </div>
+                <div class="mb-3">
+                    <label for="profile_pic" class="form-label">Profile Picture</label>
+                    <input type="file" name="profile_pic" id="profile_pic" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

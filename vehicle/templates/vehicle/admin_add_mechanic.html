@@ -1,0 +1,107 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+{% load static %}
+<head>
+  <style>
+    .form-control {
+      margin-bottom: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<br><br><br><br><br>
+<h3 class="text-center">HIRE MECHANIC TO AGENCY</h3>
+<div class="container" style="max-width: 600px;">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="first_name" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" value="{{ userForm.first_name.value }}">
+      {% for error in userForm.first_name.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" value="{{ userForm.last_name.value }}">
+      {% for error in userForm.last_name.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Mobile</label>
+      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile" value="{{ mechanicForm.mobile.value }}">
+      {% for error in mechanicForm.mobile.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <textarea class="form-control" id="address" name="address" placeholder="Address">{{ mechanicForm.address.value }}</textarea>
+      {% for error in mechanicForm.address.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="skill" class="form-label">Skills</label>
+      <input type="text" class="form-control" id="skill" name="skill" placeholder="Skills" value="{{ mechanicForm.skill.value }}">
+      {% for error in mechanicForm.skill.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="salary" class="form-label">Salary</label>
+      <input type="number" class="form-control" id="salary" name="salary" placeholder="Salary" value="{{ mechanicSalary.salary.value }}">
+      {% for error in mechanicSalary.salary.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{ userForm.username.value }}">
+      {% for error in userForm.username.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ userForm.password.value }}">
+      {% for error in userForm.password.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+        <label for="profile_pic" class="form-label">Profile Picture</label>
+        <input type="file" class="form-control" id="profile_pic" name="profile_pic">
+        {% if mechanicForm.profile_pic and mechanicForm.profile_pic.value %}
+          <img src="{{ mechanicForm.profile_pic.url }}" alt="Profile Pic" style="width: 100px; height: 100px;">
+        {% else %}
+          <img src="{% static 'profile_pic/MechanicProfilePic/default-profile-pic.png' %}" alt="Default Profile Pic" style="width: 100px; height: 100px;">
+        {% endif %}
+        {% for error in mechanicForm.profile_pic.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+      
+    <div class="mb-3">
+      <input type="submit" value="Create" class="btn btn-primary btn-submit">
+    </div>
+  </form>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

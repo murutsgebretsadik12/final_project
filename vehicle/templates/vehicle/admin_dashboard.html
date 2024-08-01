@@ -1,5 +1,5 @@
 
-{% extends "vehicle/base.html" %}
+{% extends "vehicle/adminbase.html" %}
 
 {% block content %}
 
@@ -68,16 +68,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for c, r in data %}
+                           
+                                {% for customer, request in data %}
                                 <tr>
-                                    <td>{{ c.get_name }}</td>
-                                    <td>{{ r.vehicle_name }}</td>
-                                    <td>{{ r.category }}</td>
-                                    <td>{{ r.vehicle_model }}</td>
-                                    <td>{{ r.vehicle_brand }}</td>
-                                    <td>{{ r.problem_description }}</td>
+                                    <td>
+                                        {% if customer %}
+                                            {{ customer.user.first_name }} <!-- or use customer.__str__() -->
+                                        {% else %}
+                                            Unknown
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ request.vehicle_name }}</td>
+                                    <td>{{ request.category }}</td>
+                                    <td>{{ request.vehicle_model }}</td>
+                                    <td>{{ request.vehicle_brand }}</td>
+                                    <td>{{ request.problem_description }}</td>
                                 </tr>
-                                {% endfor %}
+                            {% endfor %}
+                               
+                                
                             </tbody>
                         </table>
                     </div>

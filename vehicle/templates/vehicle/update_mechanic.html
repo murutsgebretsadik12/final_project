@@ -1,0 +1,98 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+<head>
+  <style media="screen">
+    input[type=text], select, input[type=number], input[type=password], textarea {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<br><br><br><br><br>
+<h3 style="text-align:center;">UPDATE Mechanic</h3>
+<div>
+  <form method="post" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="first_name" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" value="{{ userForm.first_name.value }}">
+      {% if userForm.first_name.errors %}
+        <div class="text-danger">{{ userForm.first_name.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="last_name" name="last_name" value="{{ userForm.last_name.value }}">
+      {% if userForm.last_name.errors %}
+        <div class="text-danger">{{ userForm.last_name.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Mobile</label>
+      <input type="text" class="form-control" id="mobile" name="mobile" value="{{ mechanicForm.mobile.value }}">
+      {% if mechanicForm.mobile.errors %}
+        <div class="text-danger">{{ mechanicForm.mobile.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <textarea class="form-control" id="address" name="address">{{ mechanicForm.address.value }}</textarea>
+      {% if mechanicForm.address.errors %}
+        <div class="text-danger">{{ mechanicForm.address.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="skill" class="form-label">Skills</label>
+      <input type="text" class="form-control" id="skill" name="skill" value="{{ mechanicForm.skill.value }}">
+      {% if mechanicForm.skill.errors %}
+        <div class="text-danger">{{ mechanicForm.skill.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username" value="{{ userForm.username.value }}">
+      {% if userForm.username.errors %}
+        <div class="text-danger">{{ userForm.username.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" value="{{ userForm.password.value }}">
+      {% if userForm.password.errors %}
+        <div class="text-danger">{{ userForm.password.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="profile_pic" class="form-label">Profile Picture</label>
+      <input type="file" class="form-control" id="profile_pic" name="profile_pic">
+      {% if mechanicForm.profile_pic.errors %}
+        <div class="text-danger">{{ mechanicForm.profile_pic.errors }}</div>
+      {% endif %}
+    </div>
+    <input type="submit" value="Update" class="btn btn-primary">
+  </form>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Main content -->
+<div class="container my-5">
+
+    <h1 class="text-center text-primary mb-4">Your Salary: {{ mechanic.salary }}</h1>
+
+    <!-- Table start -->
+    <div class="card">
+        <div class="card-header text-center text-danger">
+            <h3>Vehicles You Have Repaired</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Vehicle Name</th>
+                        <th>Number</th>
+                        <th>Problem Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in workdone %}
+                    <tr>
+                        <td>{{ w.vehicle_name }}</td>
+                        <td>{{ w.vehicle_no }}</td>
+                        <td>{{ w.problem_description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Table end -->
+
+</div>
+<!-- End main content -->
+
+{% endblock content %}

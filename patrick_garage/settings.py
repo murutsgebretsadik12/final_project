@@ -148,3 +148,12 @@ LOGOUT_REDIRECT_URL = 'vehiclehome'  # Redirect to this URL after logout
 LOGIN_URL = 'adminlogin'
 
 LOGIN_URL='customer-dashboard'
+
+
+STATIC_URL = '/static/'
+
+# # If your static files are in a directory called 'static' in the root of your project
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
+
