@@ -32,6 +32,7 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == 'true'
 
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = ['final-project-patrick-garage.onrender.com']
 
 
 
