@@ -815,7 +815,7 @@ def customer_add_request_view(request):
             enquiry = form.save(commit=False)
             enquiry.customer = customer
             enquiry.save()
-            return HttpResponseRedirect('customer-dashboard')
+            return redirect('customer-dashboard')  # Corrected line
     else:
         form = forms.RequestForm()
     return render(request, 'vehicle/customer_add_request.html', {'form': form, 'customer': customer})

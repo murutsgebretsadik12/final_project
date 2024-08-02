@@ -21,6 +21,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -87,8 +90,8 @@ DATABASES = {
     }
 }
 
-# database_url = os.environ.get("DATABASE_URL")
-# DATABASES["default"]= dj_database_url.parse(database_url)
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"]= dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

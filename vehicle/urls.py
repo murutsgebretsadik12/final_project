@@ -18,7 +18,7 @@ urlpatterns = [
     #  path('adminlogin/', LoginView.as_view(template_name='vehicle/adminlogin.html'), name='adminlogin'),
     
     # Click views
-    path('customerclick', views.customerclick_view, name='customerclick'),
+    path('customerclick/', views.customerclick_view, name='customerclick'),
     path('mechanicsclick', views.mechanicsclick_view, name='mechanicsclick'),
     path('adminclick', views.adminclick_view, name='adminclick'),
     
@@ -76,7 +76,7 @@ urlpatterns = [
     path('admin-report', views.admin_report_view,name='admin-report'),
     
      
-    path('customer-dashboard', views.customer_dashboard_view, name='customer-dashboard'),
+    path('customer-dashboard/', views.customer_dashboard_view, name='customer-dashboard'),
     path('customer-profile/', views.customer_profile_view,name='customer-profile'),
     path('edit-customer-profile', views.edit_customer_profile_view,name='edit-customer-profile'),
     path('customer-feedback', views.customer_feedback_view,name='customer-feedback'), 
