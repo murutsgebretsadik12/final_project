@@ -1,11 +1,8 @@
-
 {% extends "vehicle/adminbase.html" %}
 
 {% block content %}
-
 <!-- main content -->
-<div class="container my-4">
-
+<div class="container my-4" style="margin-top: 20px;"> <!-- Add margin-top to create space -->
     <!-- ****** cards start ********** -->
     <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-3">
@@ -68,7 +65,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                           
                                 {% for customer, request in data %}
                                 <tr>
                                     <td>
@@ -84,9 +80,7 @@
                                     <td>{{ request.vehicle_brand }}</td>
                                     <td>{{ request.problem_description }}</td>
                                 </tr>
-                            {% endfor %}
-                               
-                                
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -95,7 +89,5 @@
         </div>
     </div>
     <!-- ****** table end ********** -->
-
 </div>
-
 {% endblock content %}

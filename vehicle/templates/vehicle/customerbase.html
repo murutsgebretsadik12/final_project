@@ -41,7 +41,22 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="/customer-profile"><i class="fas fa-user-tie"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        {% if user.is_authenticated %}
+                        <li>
+                          <form method="POST" action="{% url 'logout' %}" class="dropdown-item d-flex align-items-center" style="border: none; background: none;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link text-decoration-none text-dark">
+                              <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </button>
+                          </form>
+                        </li>
+                          {% else %}
+                        <li>
+                          <a href="{% url 'login' %}" class="dropdown-item d-flex align-items-center">
+                            <i class="fas fa-sign-in-alt me-2"></i> Login
+                          </a>
+                        </li>
+                         {% endif %}
                     </ul>
                 </li>
             </ul>
