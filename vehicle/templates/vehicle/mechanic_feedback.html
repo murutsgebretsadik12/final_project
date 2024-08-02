@@ -1,0 +1,29 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% block content %}
+
+<!-- Main content -->
+<div class="container my-5">
+  <h3 class="text-center mb-4">Send Feedback To Admin</h3>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="by" class="form-label">Your Name</label>
+          <input type="text" id="by" name="by" class="form-control" placeholder="Your Name" value="{{ feedback.by }}">
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" name="message" class="form-control" rows="4" placeholder="Your Feedback">{{ feedback.message }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

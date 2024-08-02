@@ -1,0 +1,70 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center">MAKE REQUEST</h1>
+    <form method="post" class="mx-auto" style="max-width: 600px;">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="category" class="form-label">Vehicle Category</label>
+            <select id="category" name="category" class="form-select" required>
+                {% for option in enquiry.fields.category.choices %}
+                    <option value="{{ option.0 }}" {% if enquiry.category.value == option.0 %}selected{% endif %}>{{ option.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="vehicle_no" class="form-label">Vehicle Number</label>
+            <input type="text" id="vehicle_no" name="vehicle_no" class="form-control" placeholder="Vehicle Number" value="{{ enquiry.vehicle_no.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="vehicle_name" class="form-label">Vehicle Name</label>
+            <input type="text" id="vehicle_name" name="vehicle_name" class="form-control" placeholder="Vehicle Name" value="{{ enquiry.vehicle_name.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="vehicle_brand" class="form-label">Vehicle Brand</label>
+            <input type="text" id="vehicle_brand" name="vehicle_brand" class="form-control" placeholder="Vehicle Brand" value="{{ enquiry.vehicle_brand.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="vehicle_model" class="form-label">Vehicle Model</label>
+            <input type="text" id="vehicle_model" name="vehicle_model" class="form-control" placeholder="Vehicle Model" value="{{ enquiry.vehicle_model.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="problem_description" class="form-label">Problem Description</label>
+            <textarea id="problem_description" name="problem_description" class="form-control" rows="4" placeholder="Problem Description" required>{{ enquiry.problem_description.value }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="cost" class="form-label">Repair Cost</label>
+            <input type="number" id="cost" name="cost" class="form-control" placeholder="Repair Cost" value="{{ adminenquiry.cost.value }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="customer" class="form-label">Customer</label>
+            <select id="customer" name="customer" class="form-select" required>
+                {% for customer in adminenquiry.fields.customer.queryset %}
+                    <option value="{{ customer.pk }}" {% if adminenquiry.customer.value == customer.pk %}selected{% endif %}>{{ customer }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="mechanic" class="form-label">Mechanic</label>
+            <select id="mechanic" name="mechanic" class="form-select" required>
+                {% for mechanic in adminenquiry.fields.mechanic.queryset %}
+                    <option value="{{ mechanic.pk }}" {% if adminenquiry.mechanic.value == mechanic.pk %}selected{% endif %}>{{ mechanic }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Submit</button>
+    </form>
+</div>
+
+{% endblock content %}

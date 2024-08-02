@@ -1,0 +1,53 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+
+<!-- Main content -->
+<div class="wrapper">
+
+  <!-- Table start -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3 class="text-danger">Service Cost</h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Vehicle Name</th>
+                  <th scope="col">Problem Description</th>
+                  <th scope="col">Cost</th>
+                  <th scope="col">Update Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for c, r in data %}
+                <tr>
+                  <td>{{ c.user.first_name }} {{ c.user.last_name }} </td>
+                  <td>{{ r.vehicle_name }}</td>
+                  <td>{{ r.problem_description }}</td>
+                  <td>{{ r.cost }}</td>
+                  <td>
+                    <a href="{% url 'update-cost' r.id %}" class="text-primary" style="text-decoration:none; font-size:1.5rem;">
+                      &#9998;
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Table end -->
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<!-- End main content -->
+
+{% endblock content %}

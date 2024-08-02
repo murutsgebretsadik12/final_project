@@ -1,0 +1,78 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+<head>
+  <style media="screen">
+    input[type=text], select,input[type=number] ,input[type=password], textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  </style>
+</head>
+
+<br><br><br><br><br>
+<h3 style="text-align:center;">CREATE CUSTOMER ACCOUNT</h3>
+<div>
+  <form method="post" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        {{ userForm.first_name }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        {{ userForm.last_name }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile</label>
+        {{ customerForm.mobile }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        {{ customerForm.address }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        {{ userForm.username }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        {{ userForm.password }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="profile_pic" class="form-label">Profile Picture</label>
+        {{ customerForm.profile_pic }}
+      </div>
+
+    <input type="submit" value="Create">
+  </form>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

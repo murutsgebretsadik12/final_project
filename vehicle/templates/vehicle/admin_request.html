@@ -1,0 +1,119 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <style type="text/css">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      color: white;
+      font-size: 0.90em;
+    }
+
+    .order-card {
+      color: #fff;
+    }
+
+    .bg-c-blue {
+      background: linear-gradient(45deg, #4099ff, #73b4ff);
+    }
+
+    .bg-c-green {
+      background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+    }
+
+    .bg-c-yellow {
+      background: linear-gradient(45deg, #FFB64D, #ffcb80);
+    }
+
+    .bg-c-pink {
+      background: linear-gradient(45deg, #FF5370, #ff869a);
+    }
+
+    .card {
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card .card-body {
+      padding: 20px;
+    }
+
+    .order-card i {
+      font-size: 26px;
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="card bg-c-blue order-card">
+          <div class="card-body">
+            <a href="/admin-view-request" class="text-white">
+              <h6 class="m-b-20">View All Request</h6>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+              <i class="fas fa-eye f-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card bg-c-green order-card">
+          <div class="card-body">
+            <a href="/admin-add-request" class="text-white">
+              <h6 class="m-b-20">Make Request</h6>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+              <i class="fas fa-plus-circle f-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card bg-c-yellow order-card">
+          <div class="card-body">
+            <a href="/admin-approve-request" class="text-white">
+              <h6 class="m-b-20">Approve Request</h6>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+              <i class="fas fa-check-circle f-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <div class="card bg-c-pink order-card">
+          <div class="card-body">
+            <a href="/admin-view-service-cost" class="text-white">
+              <h6 class="m-b-20">Service Cost</h6>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+              <i class="fas fa-rupee-sign f-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+{% endblock content %}

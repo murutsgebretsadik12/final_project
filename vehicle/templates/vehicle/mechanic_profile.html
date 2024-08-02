@@ -2,35 +2,41 @@
 {% load static %}
 {% block content %}
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1CmrxMRARb6aLqgBO7MtQ4K59j77xCWpYAf3D9AT5mAAjTdALC04zh8hP0iY9T2S" crossorigin="anonymous">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     img {
       border-radius: 50%;
     }
+
     .center {
       margin: auto;
       width: 60%;
     }
-    .btn-custom {
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
       background-color: #f4511e;
+      border: none;
       color: #FFFFFF;
       text-align: center;
       font-size: 28px;
-      padding: 10px 20px;
+      padding: 20px;
+      width: 200px;
       transition: all 0.5s;
       cursor: pointer;
-      border-radius: 4px;
-      border: none;
       margin: 5px;
     }
-    .btn-custom:hover {
-      background-color: #e44014;
-    }
-    .btn-custom span {
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
       position: relative;
       transition: 0.5s;
     }
-    .btn-custom span:after {
+
+    .button span:after {
       content: '\00bb';
       position: absolute;
       opacity: 0;
@@ -38,30 +44,39 @@
       right: -20px;
       transition: 0.5s;
     }
-    .btn-custom:hover span {
+
+    .button:hover span {
       padding-right: 25px;
     }
-    .btn-custom:hover span:after {
+
+    .button:hover span:after {
       opacity: 1;
       right: 0;
     }
   </style>
 </head>
 
-<div class="container my-5">
-  <div class="center text-center">
-    <img src="{% static mechanic.profile_pic.url %}" alt="Profile Picture" class="img-fluid" style="width:200px; height:200px;">
-    <div class="card mt-4 p-3">
-      <div class="card-body">
-        <h3 class="text-primary">Name: <span class="text-dark">{{ mechanic }}</span></h3>
-        <h3 class="text-primary">Mobile: <span class="text-dark">{{ mechanic.mobile }}</span></h3>
-        <h3 class="text-primary">Skill: <span class="text-dark">{{ mechanic.skill }}</span></h3>
-        <h3 class="text-primary">Address: <span class="text-dark">{{ mechanic.address }}</span></h3>
-      </div>
-    </div>
-    <div class="mt-4">
-      <a href="/edit-mechanic-profile" class="btn btn-custom"><span>Edit Profile</span></a>
+<div class="container py-5">
+  <div class="row justify-content-center mb-4">
+    <div class="col-auto">
+      <img src="{{ mechanic.profile_pic.url }}" alt="Profile Picture" class="img-fluid" style="width:200px; height:200px;">
     </div>
   </div>
+
+  <div class="card shadow center">
+    <div class="card-body bg-primary text-white">
+      <h3 class="card-title"><strong>Name:</strong> {{ mechanic }}</h3>
+      <p class="card-text"><strong>Mobile:</strong> {{ mechanic.mobile }}</p>
+      <p class="card-text"><strong>Skill:</strong> {{ mechanic.skill }}</p>
+      <p class="card-text"><strong>Address:</strong> {{ mechanic.address }}</p>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="/edit-mechanic-profile" class="btn btn-danger btn-lg"><span>Edit Profile</span></a>
+  </div>
 </div>
+
 {% endblock content %}
+
+

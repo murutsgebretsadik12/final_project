@@ -48,8 +48,10 @@
                           <div class="office-hour">Monday - Saturday 7:00AM - 6:00PM</div>
                       </div>
                       <div class="right-column">
+                        
                           <div class="phone-number">Schedule Your Appontment Today : <strong>+353833018415</strong>
                           </div>
+                          
 
                       </div>
                   </div>
@@ -89,8 +91,7 @@
                                           <li class="dropdown"><a href="{% url 'adminclick' %}">Admin</a>
                                           </li>
 
-                                          {% comment %} <li class="dropdown"><a href="{% url 'profile' %}">Profile</a>
-                                          </li> {% endcomment %}
+                                        
                                          
                                 
                                           {% comment %} <li><a href="{% url 'vehiclecontact' %}">Contact Us</a></li> {% endcomment %}
@@ -112,21 +113,8 @@
                       <div class="link-btn ml-3"><a href="{% url 'login' %}" class="theme-btn btn-style-one"  style="margin-left: 25px;">Login</a></div>
                       {% endif %} 
 
-                      {% comment %} {% if user.is_authenticated %}
-                        <form method="POST" action="{% url 'logout' %}" class="link-btn" style="margin-left: 25px;">
-                            {% csrf_token %}
-                            <button type="submit" class="theme-btn btn-style-one">Logout</button>
-                        </form>
-                        {% if user|is_customer %}
-                            <a href="{% url 'customer-dashboard' %}" class="theme-btn btn-style-one" style="margin-left: 25px;">Customer Dashboard</a>
-                        {% elif user|is_mechanic %}
-                            <a href="{% url 'mechanic-dashboard' %}" class="theme-btn btn-style-one" style="margin-left: 25px;">Mechanic Dashboard</a>
-                        {% endif %}
-                        {% else %}
-                            <div class="link-btn ml-3">
-                                <a href="{% url 'login' %}" class="theme-btn btn-style-one" style="margin-left: 25px;">Login</a>
-                            </div>
-                        {% endif %} {% endcomment %}
+                 
+                        {% comment %} <li><a href="{% url 'vehiclecontact' %}" class="link-btn">Contact Us</a></li> {% endcomment %}
 
                   </div> 
               </div>
@@ -174,7 +162,7 @@
 
 
           <!-- Mobile Menu  -->
-          {% comment %} <div class="mobile-menu">
+          <div class="mobile-menu">
               <div class="menu-backdrop"></div>
               <div class="close-btn"><span class="icon flaticon-remove"></span></div>
 
@@ -197,7 +185,7 @@
 
               </nav>
               
-          </div> {% endcomment %}
+          </div> 
           
           <!-- End Mobile Menu -->
 

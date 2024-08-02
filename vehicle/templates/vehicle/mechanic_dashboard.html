@@ -1,46 +1,38 @@
-{% extends "vehicle/base.html" %}
+{% extends "vehicle/mechanicbase.html" %}
 
 {% block content %}
 
 <!-- main content -->
-<div class="container my-4">
+<div class="container pt-5 my-5"> <!-- Added margin for spacing -->
 
     <!-- ****** cards start ********** -->
-    <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-primary">
-                <div class="card-body text-center">
-                    <i class="fas fa-tasks fa-3x"></i>
-                    <h3 class="my-2">{{ new_work_assigned }}</h3>
-                    <p>New Work Assigned</p>
-                </div>
+    <div class="row g-4"> <!-- Added gap between rows -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary text-center p-4">
+                <i class="fas fa-tasks fa-3x"></i>
+                <h3 class="my-2">{{ new_work_assigned }}</h3>
+                <p class="mb-0">New Work Assigned</p>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-warning">
-                <div class="card-body text-center">
-                    <i class="fas fa-spinner fa-3x"></i>
-                    <h3 class="my-2">{{ work_in_progress }}</h3>
-                    <p>Work In Progress</p>
-                </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning text-center p-4">
+                <i class="fas fa-spinner fa-3x"></i>
+                <h3 class="my-2">{{ work_in_progress }}</h3>
+                <p class="mb-0">Work In Progress</p>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-success">
-                <div class="card-body text-center">
-                    <i class="fas fa-check-circle fa-3x"></i>
-                    <h3 class="my-2">{{ work_completed }}</h3>
-                    <p>Work Completed</p>
-                </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success text-center p-4">
+                <i class="fas fa-check-circle fa-3x"></i>
+                <h3 class="my-2">{{ work_completed }}</h3>
+                <p class="mb-0">Work Completed</p>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-danger">
-                <div class="card-body text-center">
-                    <i class="fas fa-rupee-sign fa-3x"></i>
-                    <h3 class="my-2">{{ salary }}</h3>
-                    <p>Salary</p>
-                </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger text-center p-4">
+                <i class="fas fa-rupee-sign fa-3x"></i>
+                <h3 class="my-2">{{ salary }}</h3>
+                <p class="mb-0">Salary</p>
             </div>
         </div>
     </div>
@@ -48,5 +40,6 @@
 
 </div>
 <!-- end main content -->
+
 
 {% endblock content %}

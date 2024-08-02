@@ -48,6 +48,12 @@ class MechanicForm(forms.ModelForm):
             'skill': forms.TextInput(attrs={'placeholder': 'List your skills'}),
         }
 
+   
+class MechanicSalaryForm(forms.ModelForm):
+    class Meta:
+        model = Mechanic
+        fields = ['salary'] 
+        
 class CustomerUserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CustomerUserForm, self).__init__(*args, **kwargs)
@@ -76,7 +82,7 @@ class CustomerForm(forms.ModelForm):
             'mobile': forms.TextInput(attrs={'placeholder': 'Enter your mobile number'}),
         }
         
-        
+    
 
 
 class RequestForm(forms.ModelForm):
@@ -100,6 +106,20 @@ class RequestForm(forms.ModelForm):
         self.fields['category'].widget = forms.Select(choices=Request.CATEGORY_CHOICES)
         # self.fields['status'].widget = forms.HiddenInput()  # Hide the status field if it's not editable
 
+
+class AdminRequestForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields = ['customer', 'mechanic', 'cost']
+
+class UpdateCostForm(forms.Form):
+    cost=forms.IntegerField()
+
+
+
+
+
+
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
@@ -107,3 +127,13 @@ class FeedbackForm(forms.ModelForm):
         widgets = {
             'message': forms.Textarea(attrs={'rows': 3}),
         }
+
+#for Attendance related form
+presence_choices=(('Present','Present'),('Absent','Absent'))
+class AttendanceForm(forms.Form):
+    present_status=forms.ChoiceField( choices=presence_choices)
+    date=forms.DateField()
+    
+class AskDateForm(forms.Form):
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))    

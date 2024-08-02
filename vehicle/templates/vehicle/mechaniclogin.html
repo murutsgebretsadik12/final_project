@@ -8,5 +8,10 @@
     {{ form|crispy }}
     <button type="submit" class="btn btn-submit">Login</button>
   </form>
+  <div class="border-top pt-3">
+    <small class="text-muted">
+        Need An Account? <a class="ml-2" href="{% url 'mechanicsignup' %}">Sign Up Now</a>
+    </small>
+</div>
 </div>
  {% endblock content %}

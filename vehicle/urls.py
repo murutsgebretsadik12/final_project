@@ -6,40 +6,77 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='vehiclehome'),
-    path('about/', views.about, name='vehicleabout'),
-    path('services/', views.services, name='vehicleservices'),
-    path('contact/', views.contact, name='vehiclecontact'),
+    path('about', views.about, name='vehicleabout'),
+    path('services', views.services, name='vehicleservices'),
+    path('contact', views.contact, name='vehiclecontact'),
     
     # Login views
-    path('mechaniclogin/', LoginView.as_view(template_name='vehicle/mechaniclogin.html'), name='mechaniclogin'),
-    path('customerlogin/', LoginView.as_view(template_name='vehicle/customerlogin.html'), name='customerlogin'),
-    path('adminlogin/', views.admin_login_view, name='adminlogin'),
+    path('mechaniclogin', LoginView.as_view(template_name='vehicle/mechaniclogin.html'), name='mechaniclogin'),
+    path('customerlogin', LoginView.as_view(template_name='vehicle/customerlogin.html'), name='customerlogin'),
+    path('adminlogin', views.admin_login_view, name='adminlogin'),
     
     #  path('adminlogin/', LoginView.as_view(template_name='vehicle/adminlogin.html'), name='adminlogin'),
     
     # Click views
     path('customerclick/', views.customerclick_view, name='customerclick'),
-    path('mechanicsclick/', views.mechanicsclick_view, name='mechanicsclick'),
-    path('adminclick/', views.adminclick_view, name='adminclick'),
+    path('mechanicsclick', views.mechanicsclick_view, name='mechanicsclick'),
+    path('adminclick', views.adminclick_view, name='adminclick'),
     
     # Signup views
-    path('mechanicsignup/', views.mechanic_signup_view, name='mechanicsignup'),
-    path('customersignup/', views.customer_signup_view, name='customersignup'),
+    path('mechanicsignup', views.mechanic_signup_view, name='mechanicsignup'),
+    path('customersignup', views.customer_signup_view, name='customersignup'),
     
     # Login and logout views
-    path('login/', LoginView.as_view(template_name='vehicle/home.html'), name='login'),
-    path('logout/', LogoutView.as_view(template_name='vehicle/home.html'), name='logout'),
+    path('login', LoginView.as_view(template_name='vehicle/home.html'), name='login'),
+    # path('logout/', LogoutView.as_view(template_name='vehicle/home.html'), name='logout'),
+    path('logout', LogoutView.as_view(template_name='vehicle/index.html'), name='logout'),
     
     # After login view
-    path('afterlogin/', views.afterlogin_view, name='afterlogin'),
+    path('afterlogin', views.afterlogin_view, name='afterlogin'),
     
     
-    path('admin-dashboard/', views.admin_dashboard_view, name='admin-dashboard'),
-      
+    path('admin-dashboard', views.admin_dashboard_view, name='admin-dashboard'),
     
+    path('admin-customer', views.admin_customer_view,name='admin-customer'), 
+    path('admin-view-customer',views.admin_view_customer_view,name='admin-view-customer'),
+    path('delete-customer/<int:pk>', views.delete_customer_view,name='delete-customer'),
+    path('update-customer/<int:pk>', views.update_customer_view,name='update-customer'),
+    path('admin-add-customer', views.admin_add_customer_view,name='admin-add-customer'),
+    path('admin-view-customer-enquiry', views.admin_view_customer_enquiry_view,name='admin-view-customer-enquiry'),
+    path('admin-view-customer-invoice', views.admin_view_customer_invoice_view,name='admin-view-customer-invoice'),
+    
+    path('admin-mechanic', views.admin_mechanic_view,name='admin-mechanic'),
+    path('admin-view-mechanic',views.admin_view_mechanic_view,name='admin-view-mechanic'),
+    path('delete-mechanic/<int:pk>', views.delete_mechanic_view,name='delete-mechanic'),
+    path('update-mechanic/<int:pk>', views.update_mechanic_view,name='update-mechanic'),
+    path('admin-add-mechanic',views.admin_add_mechanic_view,name='admin-add-mechanic'),
+    path('admin-approve-mechanic',views.admin_approve_mechanic_view,name='admin-approve-mechanic'),
+    path('approve-mechanic/<int:pk>', views.approve_mechanic_view,name='approve-mechanic'),
+    path('admin-view-mechanic-salary',views.admin_view_mechanic_salary_view,name='admin-view-mechanic-salary'),
+    path('update-salary/<int:pk>', views.update_salary_view,name='update-salary'),
+    
+    
+    path('admin-mechanic-attendance', views.admin_mechanic_attendance_view,name='admin-mechanic-attendance'),
+    path('admin-take-attendance', views.admin_take_attendance_view,name='admin-take-attendance'),
+    path('admin-view-attendance', views.admin_view_attendance_view,name='admin-view-attendance'),
+    
+    path('admin-request', views.admin_request_view,name='admin-request'),
+    path('admin-view-request',views.admin_view_request_view,name='admin-view-request'),
+    path('change-status/<int:pk>', views.change_status_view,name='change-status'),
+    path('admin-delete-request/<int:pk>', views.admin_delete_request_view,name='admin-delete-request'), 
+    path('admin-add-request',views.admin_add_request_view,name='admin-add-request'),
+    path('admin-approve-request',views.admin_approve_request_view,name='admin-approve-request'),
+    path('approve-request/<int:pk>', views.approve_request_view,name='approve-request'), 
+     
+     
+    path('admin-view-service-cost',views.admin_view_service_cost_view,name='admin-view-service-cost'),
+    path('update-cost/<int:pk>', views.update_cost_view,name='update-cost'),  
+    
+    path('admin-feedback', views.admin_feedback_view,name='admin-feedback'),
+    path('admin-report', views.admin_report_view,name='admin-report'),
     
      
-    path('customer-dashboard', views.customer_dashboard_view, name='customer-dashboard'),
+    path('customer-dashboard/', views.customer_dashboard_view, name='customer-dashboard'),
     path('customer-profile/', views.customer_profile_view,name='customer-profile'),
     path('edit-customer-profile', views.edit_customer_profile_view,name='edit-customer-profile'),
     path('customer-feedback', views.customer_feedback_view,name='customer-feedback'), 
@@ -56,9 +93,14 @@ urlpatterns = [
     
     
     path('mechanic-dashboard/', views.mechanic_dashboard_view, name='mechanic-dashboard'),
-    # path('mechanic-profile', views.mechanic_profile_view,name='mechanic-profile'),
-    # path('edit-mechanic-profile', views.edit_mechanic_profile_view,name='edit-mechanic-profile'),
-
+    path('mechanic-work-assigned', views.mechanic_work_assigned_view,name='mechanic-work-assigned'),
+    path('mechanic-update-status/<int:pk>', views.mechanic_update_status_view,name='mechanic-update-status'),
+    path('mechanic-feedback', views.mechanic_feedback_view,name='mechanic-feedback'),
+    path('mechanic-salary', views.mechanic_salary_view,name='mechanic-salary'),
+    
+    path('mechanic-profile', views.mechanic_profile_view,name='mechanic-profile'),
+    path('edit-mechanic-profile', views.edit_mechanic_profile_view,name='edit-mechanic-profile'),
+    path('mechanic-attendance', views.mechanic_attendance_view,name='mechanic-attendance'),
     
     
     
@@ -67,3 +109,5 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    

@@ -1,49 +1,67 @@
-{% extends "vehicle/customerbase.html" %}
-{% comment %} {% extends "vehicle/base.html" %} {% endcomment %}
-
-
+{% extends 'vehicle/customerbase.html' %}
+{% load static %}
 {% block content %}
-<div class="container my-4">
+
+<!-- main content -->
+<div class="container mt-4">
 
     <!-- ****** cards start ********** -->
-    <div class="row g-4 ">
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-primary">
-                <div class="card-body text-center">
-                    <i class="fas fa-tasks fa-3x"></i>
-                    <h3 class="my-2">{{ new_request_made }}</h3>
-                    <p>New Request Made</p>
+    <div class="row row-cols-1 row-cols-md-4 g-3 d-flex justify-content-center" style="margin-top: 10px;">
+        <div class="col">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">New Request Made</h5>
+                            <h3 class="card-text">{{new_request_made}}</h3>
+                        </div>
+                        <i class="fas fa-tasks fa-3x"></i>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-warning">
-                <div class="card-body text-center">
-                    <i class="fas fa-spinner fa-3x"></i>
-                    <h3 class="my-2">{{ work_in_progress }}</h3>
-                    <p>Vehicle Repair In Progress</p>
+        <div class="col">
+            <div class="card text-white bg-warning h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Vehicle Repair In Progress</h5>
+                            <h3 class="card-text">{{work_in_progress}}</h3>
+                        </div>
+                        <i class="fas fa-spinner fa-3x"></i>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-success">
-                <div class="card-body text-center">
-                    <i class="fas fa-check-circle fa-3x"></i>
-                    <h3 class="my-2">{{ work_completed }}</h3>
-                    <p>Vehicle Repaired</p>
+        <div class="col">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Vehicle Repaired</h5>
+                            <h3 class="card-text">{{work_completed}}</h3>
+                        </div>
+                        <i class="fas fa-check-circle fa-3x"></i>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card text-white bg-danger">
-                <div class="card-body text-center">
-                    <i class="fas fa-rupee-sign fa-3x"></i>
-                    <h3 class="my-2">{{ bill }}</h3>
-                    <p>Total Bill</p>
+        <div class="col">
+            <div class="card text-white bg-danger h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Total Bill</h5>
+                            <h3 class="card-text">{{bill}}</h3>
+                        </div>
+                        <i class="fas fa-rupee-sign fa-3x"></i>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+    <!-- ****** cards end ********** -->
 
- {% endblock content %}
+</div>
+<!-- end main content -->
+{% endblock content %}

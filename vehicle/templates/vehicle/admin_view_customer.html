@@ -1,0 +1,59 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+{% load static %}
+<!-- main content -->
+<div class="container my-4">
+
+    <!-- ****** table start ********** -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-danger text-center">Customers</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Profile Picture</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                            <tr>
+                                <td>{{ customer.user.first_name }} {{ customer.user.last_name }}</td>
+                                <td>
+                    
+                                        {% if customer.profile_pic %}
+                                            <img src="{{ customer.profile_pic.url }}" alt="Profile Pic" class="img-thumbnail" style="width: 40px; height: 40px;" />
+                                        {% else %}
+                                            <img src="{% static 'default-profile-pic.png' %}" alt="Default Profile Pic" class="img-thumbnail" style="width: 40px; height: 40px;" />
+                                        {% endif %}
+                                    
+                                </td>
+                                <td>{{ customer.mobile }}</td>
+                                <td>{{ customer.address }}</td>
+                                <td>
+                                    <a href="{% url 'update-customer' customer.id %}" class="text-danger fs-4" title="Update">&#9998;</a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'delete-customer' customer.id %}" class="text-primary fs-4" title="Delete">&#10008;</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ****** table end ********** -->
+
+</div>
+<!-- end main content -->
+{% endblock content %}
