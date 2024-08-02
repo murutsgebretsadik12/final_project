@@ -25,12 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yp@9&$z@lf-6dh+$=51_5m_3$y8gj)hrn=7hm8ar#orpzd$7nf'
+DEBUG = os.environ.get("DEBUG", "False").lower() == 'true'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+
 
 
 # Application definition
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'patrick_garage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,6 +87,8 @@ DATABASES = {
     }
 }
 
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES["default"]= dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -137,6 +138,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 # MEDIA_ROOT = BASE_DIR / 'media' # Newer modern and Pythonic way, to store uploaded files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 LOGIN_REDIRECT_URL = 'customerclick'# to redirect to home page while login
