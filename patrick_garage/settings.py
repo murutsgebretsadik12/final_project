@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -144,6 +145,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#ˇpython manage.py collectstatic ---run the commanad to look the change on static files--
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 
 LOGIN_REDIRECT_URL = 'customerclick'# to redirect to home page while login
