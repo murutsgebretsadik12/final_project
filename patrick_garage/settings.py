@@ -36,7 +36,13 @@ ALLOWED_HOSTS = ['final-project-patrick-garage.onrender.com']
 ALLOWED_HOSTS = ['final-project-patrick-garage.onrender.com', 'localhost 127.0.0.1 [::1]']
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'final-project-patrick-garage.onrender.com',
+]
+
 
 # Application definition
 
