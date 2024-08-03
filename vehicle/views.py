@@ -32,7 +32,7 @@ def contact(request):
     return render(request, 'vehicle/contact.html', {'title': 'contact'})
 
 def services(request):
-    return render(request, 'vehicle/services.html', {'title': 'services'})
+    return render(request, 'vehicle/Services.html', {'title': 'services'})
 
 
 # Role based redirect
