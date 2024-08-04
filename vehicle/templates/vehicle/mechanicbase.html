@@ -13,9 +13,6 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="{% static 'vehicle/css/services.css' %}">
 </head>
 <body class="d-flex flex-column min-vh-100">
   <!-- Navbar -->
@@ -32,7 +29,6 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="switchTheme()">
-              {% comment %} <i class="fas fa-moon"></i> {% endcomment %}
             </a>
           </li>
           <li class="nav-item dropdown">
@@ -69,30 +65,30 @@
   <!-- Sidebar and Content Wrapper -->
   <div class="d-flex">
     <!-- Sidebar -->
-    <nav id="sidebar" class="bg-light p-3" style="margin-top: 40px;">
+    <nav id="sidebar" class="bg-light p-3" style="margin-top: 40px;" >
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="/mechanic-dashboard">
+          <a class="nav-link" href="/mechanic-dashboard" style="color: black;">
             <i class="fas fa-tachometer-alt me-2"></i> Dashboard
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mechanic-work-assigned">
+          <a class="nav-link" href="/mechanic-work-assigned" style="color: black;">
             <i class="fas fa-spinner me-2"></i> Work Assigned
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mechanic-salary">
+          <a class="nav-link" href="/mechanic-salary" style="color: black;">
             <i class="fas fa-rupee-sign me-2"></i> Salary
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mechanic-attendance">
+          <a class="nav-link" href="/mechanic-attendance" style="color: black;">
             <i class="fas fa-calendar-week me-2"></i> Attendance
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mechanic-feedback">
+          <a class="nav-link" href="/mechanic-feedback" style="color: black;">
             <i class="fas fa-comments me-2"></i> Feedback
           </a>
         </li>
@@ -125,6 +121,6 @@
 
   <!-- Additional JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script> 
-  <script src="{% static 'vehicle/js/index.js' %}"></script>
+  {% comment %} <script src="{% static 'vehicle/js/index.js' %}"></script> {% endcomment %}
 </body>
 </html>

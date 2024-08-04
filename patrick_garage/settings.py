@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['final-project-patrick-garage.onrender.com']
 ALLOWED_HOSTS = ['final-project-patrick-garage.onrender.com', 'localhost 127.0.0.1 [::1]']
 
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -100,8 +100,8 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"]= dj_database_url.parse(database_url)
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES["default"]= dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
