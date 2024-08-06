@@ -27,6 +27,7 @@ urlpatterns = [
     path('customersignup', views.customer_signup_view, name='customersignup'),
     
     # Login and logout views
+    # path('login', unified_login_view, name='unified-login'),
     path('login', LoginView.as_view(template_name='vehicle/home.html'), name='login'),
     # path('logout/', LogoutView.as_view(template_name='vehicle/home.html'), name='logout'),
     path('logout', LogoutView.as_view(template_name='vehicle/index.html'), name='logout'),

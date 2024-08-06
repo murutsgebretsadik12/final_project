@@ -13,6 +13,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q, Sum
 from . import forms, models
 from django.core.paginator import Paginator
+from django.conf import settings
+import requests
+
+
 
 
 
@@ -29,7 +33,13 @@ def about(request):
     return render(request, 'vehicle/about.html', {'title': 'about'})
 
 def contact(request):
-    return render(request, 'vehicle/contact.html', {'title': 'contact'})
+    context = {
+        'garage_lat': 53.360690,
+        'garage_lng': -6.278290,
+        'GOOGLE_MAPS_API_KEY': settings.GOOGLE_MAPS_API_KEY
+    }
+    return render(request, 'vehicle/contact.html', context)
+
 
 def services(request):
     return render(request, 'vehicle/Services.html', {'title': 'services'})
@@ -129,7 +139,7 @@ def customer_signup_view(request):
 
 
 
-#user based login
+#customer based login
 def customer_login_view(request):
     form = AuthenticationForm()
     if request.method == 'POST':
@@ -152,7 +162,7 @@ def customer_login_view(request):
     return render(request, 'vehicle/customerlogin.html', {'form': form})
 
 
-
+#mechanic based login
 def mechanic_login_view(request):
     form = AuthenticationForm()
     if request.method == 'POST':
@@ -175,7 +185,7 @@ def mechanic_login_view(request):
     return render(request, 'vehicle/mechaniclogin.html', {'form': form})
 
 
-
+#admin based login
 def admin_login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)

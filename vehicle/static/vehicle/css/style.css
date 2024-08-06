@@ -1584,7 +1584,7 @@
  .services-section {
      position: relative;
      padding: 100px 0 170px;
-     background: #f5f4f7 url(..myapp/images/pattern.png);
+     background: #f5f4f7 url(../images/pattern.png);
  }
  
  .service-block-one .inner-box {
