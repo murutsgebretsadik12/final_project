@@ -3,16 +3,15 @@
 {% block content %}
 <head>
     <title>Google Maps Integration</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMap" async defer></script>
-   
+    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script> {% endcomment %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&libraries=places&callback=initMap" async defer></script>
     <script>
         var map, directionsService, directionsRenderer;
 
         function initMap() {
-            // Initial map setup
             directionsService = new google.maps.DirectionsService();
             directionsRenderer = new google.maps.DirectionsRenderer();
-            var garageLocation = {lat: {{ garage_lat }}, lng: {{ garage_lng }}};
+            var garageLocation = {lat: 53.360690, lng: -6.278290};
 
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
@@ -35,7 +34,7 @@
         function calculateRoute() {
             var start = document.getElementById('start').value;
             var travelMode = document.getElementById('travelMode').value;
-            var garageLocation = {lat: {{ garage_lat }}, lng: {{ garage_lng }}};
+            var garageLocation = {lat: 53.360690, lng: -6.278290};
 
             directionsService.route({
                 origin: start,
@@ -47,11 +46,10 @@
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
-            });   
+            });
         }
-
     </script>
-
+    
     <style>
         .directions-container {
             display: flex;
@@ -107,30 +105,20 @@
                     <div class="inner-column">
                         <!--Contact Form-->
                         <div class="contact-form">
-                            <form method="post" action="{% url 'vehiclecontact' %}" id="contact-form">
+                            <form method="post">
                                 {% csrf_token %}
-                                <div class="row clearfix">
-                                    <div class="form-group col-md-12">
-                                        {{ form.name }}
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        {{ form.email }}
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        {{ form.subject }}
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        {{ form.message }}
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <button class="theme-btn btn-style-one" type="submit"><span>Submit now</span></button>
-                                    </div>
+                                {{ form.as_p }}
+                                <div class="form-group">
+                                    <button type="submit" class="theme-btn btn-style-one">Submit now</button>
                                 </div>
                             </form>
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                         </div>
                         <!--End Contact Form-->
                     </div>
@@ -165,7 +153,7 @@
         </select>
         <button class="directions-button" onclick="calculateRoute()">Get Directions</button>
     </div>
-    
+
     <h1>Google Map</h1>
     <div id="map"></div>
 

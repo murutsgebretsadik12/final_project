@@ -1012,3 +1012,28 @@ def edit_mechanic_profile_view(request):
  #============================================================================================
  # mechanic based view   END
 #============================================================================================
+
+
+
+# views.py
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = forms.ContactForm(request.POST)
+        if form.is_valid():
+            # Save the data from the form to the model
+            contact_message = models.ContactMessage(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                subject=form.cleaned_data['subject'],
+                message=form.cleaned_data['message']
+            )
+            contact_message.save()  # Save the instance to the database
+            return redirect('contact_success')
+    else:
+        form = forms.ContactForm()
+
+    return render(request, 'vehicle/contact.html', {'form': form})
+
+def contact_success_view(request):
+    return render(request, 'vehicle/contact_success.html')
