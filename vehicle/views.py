@@ -1037,3 +1037,4 @@ def contact_view(request):
 
 def contact_success_view(request):
     return render(request, 'vehicle/contact_success.html')
+
