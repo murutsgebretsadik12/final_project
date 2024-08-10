@@ -1,0 +1,160 @@
+
+{% load static %}
+{% block content %}
+<head>
+    <title>Google Maps Integration</title>
+    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script> {% endcomment %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&libraries=places&callback=initMap" async defer></script>
+    <script>
+        var map, directionsService, directionsRenderer;
+
+        function initMap() {
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            var garageLocation = {lat: 53.360690, lng: -6.278290};
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: garageLocation
+            });
+
+            directionsRenderer.setMap(map);
+
+            // Marker for the garage location
+            new google.maps.Marker({
+                position: garageLocation,
+                map: map,
+                title: 'Garage Location'
+            });
+
+            // Autocomplete for the start location input field
+            var autocomplete = new google.maps.places.Autocomplete(document.getElementById('start'));
+        }
+
+        function calculateRoute() {
+            var start = document.getElementById('start').value;
+            var travelMode = document.getElementById('travelMode').value;
+            var garageLocation = {lat: 53.360690, lng: -6.278290};
+
+            directionsService.route({
+                origin: start,
+                destination: garageLocation,
+                travelMode: google.maps.TravelMode[travelMode]
+            }, function(response, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+    </script>
+    
+    <style>
+        .directions-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+            gap: 10px;
+        }
+        .directions-input, .directions-select, .directions-button {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .directions-input {
+            width: 250px;
+            max-width: 100%;
+        }
+        .directions-select {
+            width: 150px;
+            max-width: 100%;
+        }
+        .directions-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .directions-button:hover {
+            background-color: #0056b3;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+     <h1>Contact page</h1>
+      <!--Contact Section-->
+    <section class="contact-section">
+        <div class="auto-container">
+            <div class="contact-title">
+                <h2>Drop us message</h2>
+                <div class="text">Praising pain was born and I will give you a complete account of the system, and </div>
+            </div>
+
+            <div class="row clearfix">
+                
+                    <!--Form Column-->
+                <div class="form-column col-lg-7">
+                    <div class="inner-column">
+                        <!--Contact Form-->
+                        <div class="contact-form">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="form-group">
+                                    <button type="submit" class="theme-btn btn-style-one">Submit now</button>
+                                </div>
+                            </form>
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <!--End Contact Form-->
+                    </div>
+                </div>
+
+                
+                <!--Info Column-->
+                <div class="info-column col-lg-5">
+                    <div class="inner-column">
+                        <h4>Our Address</h4>
+                        <div class="text">Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service.</div>
+                        <ul>
+                            <li><i class="flaticon-pin"></i><span>Address:</span> 10 new cabra rd, phisbsborough, Dublin  city, D07X6K7</li>
+                            <li><i class="flaticon-email"></i><span>email:</span> contact@murutsmenge21@gmail.com</li>
+                            <li><i class="flaticon-phone"></i><span>phone:</span> +353833018415</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <div class="directions-container">
+        <input id="start" type="text" class="directions-input" placeholder="Enter your location" />
+        <select id="travelMode" class="directions-select">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+        </select>
+        <button class="directions-button" onclick="calculateRoute()">Get Directions</button>
+    </div>
+
+    <h1>Google Map</h1>
+    <div id="map"></div>
+
+ {% endblock content %}
