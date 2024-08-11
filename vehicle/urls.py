@@ -9,7 +9,7 @@ urlpatterns = [
     path('about', views.about, name='vehicleabout'),
     path('services', views.services, name='vehicleservices'),
     path('contact', views.contact_view, name='vehiclecontact'),
-    # path('contact/success/', views.contact_success_view, name='contact_success'),
+    path('contact/success/', views.contact_success_view, name='contact_success'),
     
     # Login views
     path('mechaniclogin', LoginView.as_view(template_name='vehicle/mechaniclogin.html'), name='mechaniclogin'),

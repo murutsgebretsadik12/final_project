@@ -3,9 +3,9 @@
 {% block content %}
 <head>
     <title>Google Maps Integration</title>
-    <p>Your Google Maps API Key: {{ GOOGLE_MAPS_API_KEY }}</p>
+    
 
-    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script> {% endcomment %}
+    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> {% endcomment %}
     <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&libraries=places&callback=initMap" async defer></script>
     <script>
         var map, directionsService, directionsRenderer;

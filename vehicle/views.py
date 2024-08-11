@@ -385,16 +385,6 @@ def admin_view_customer_invoice_view(request):
     return render(request,'vehicle/admin_view_customer_invoice.html',{'data':zip(customers,enquiry)})
 
 
-#	Total Cost is remaining??????
-# @login_required(login_url='adminlogin')
-# def customer_total_cost_view(request):
-#     # Annotate each customer with their total cost of enquiries
-#     customers = Customer.objects.annotate(
-#         total_cost=Sum('enquiries__cost')
-#     )
-#     # Pass the queryset to the template
-#     return render(request, 'vehicle/admin_customer_total_cost.html', {'customers': customers})
-
 
 @login_required(login_url='adminlogin')
 def admin_mechanic_view(request):
